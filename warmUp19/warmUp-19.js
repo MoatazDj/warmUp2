@@ -19,5 +19,22 @@ Explanation: In this case, no transaction is done, i.e. max profit = 0.
 */
 
 var maxProfit = function(prices) {
-  // YOUR CODE HERE
+  var minIdx = 0;
+    var maxIdx = 1;
+    var currMin = 0;
+    var MaxProfit = 0;
+    if(prices.length < 2) {
+        alert("Need atleast two time periods to be profitable!");
+    }
+    for(var i = 1; i < prices.length; i++) {
+        if(prices[i] < prices[currMin]) { 
+        	currMin = i;
+        }
+        if(prices[maxIdx] - prices[minIdx] < prices[i] - prices[currMin]) {
+                maxIdx = i;
+            	minIdx = currMin;
+        }
+    }
+    MaxProfit  = prices[maxIdx] - prices[minIdx];
+    return MaxProfit;
 };
